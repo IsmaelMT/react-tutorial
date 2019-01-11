@@ -1,6 +1,8 @@
 import React from "react"
 import {Link} from "react-router-dom"
+
 import AddRecipeModal from "./AddRecipeModal"
+import Loading from "./Loading"
 
 class RecipeList extends React.Component {
 
@@ -8,6 +10,7 @@ class RecipeList extends React.Component {
     super(props)
     this.state = {
       recipes: [],
+      loading: true,
       showAddRecipeModal: false
     };
   }
@@ -16,7 +19,7 @@ class RecipeList extends React.Component {
     const recipes = await fetch("/recipes/", { credentials: "include" })
       .then(response => response.json())
 
-    this.setState({ recipes })
+    this.setState({ recipes, loading: false })
   }
 
   refreshList = (recipe) => {
@@ -39,27 +42,38 @@ class RecipeList extends React.Component {
   }
 
   async removeRecipe (recipeId) {
-    await fetch(`/recipes/${recipeId}/`,
-      {
-        method: "DELETE",
-        credentials: "include",
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-        }
-      })
-    .then(
-      (response) => {
-        if (response.status === 204) {
-          let recipes = this.state.recipes
-          recipes = recipes.filter((recipe) => recipe.id !== recipeId)
-          this.setState({ recipes })
-        }
-      }
+
+    let confirmDeletion = window.confirm(
+      "Are you sure you want to remove this recipe?"
     )
+
+    if (confirmDeletion) {
+      await fetch(`/recipes/${recipeId}/`,
+        {
+          method: "DELETE",
+          credentials: "include",
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          }
+        })
+      .then(
+        (response) => {
+          if (response.status === 204) {
+            let recipes = this.state.recipes
+            recipes = recipes.filter((recipe) => recipe.id !== recipeId)
+            this.setState({ recipes })
+          }
+        }
+      )
+    }
   }
 
   render() {
+
+    if (this.state.loading) {
+      return <Loading />
+    }
 
     const recipeList = this.state.recipes.map((recipe) => {
       return (
