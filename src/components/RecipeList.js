@@ -3,6 +3,9 @@ import {Link} from "react-router-dom"
 
 import AddRecipeModal from "./AddRecipeModal"
 import Loading from "./Loading"
+import Button from "./common/Button"
+import Card from "./common/Card"
+import StyledLink from "./common/StyledLink"
 
 class RecipeList extends React.Component {
 
@@ -78,9 +81,17 @@ class RecipeList extends React.Component {
     const recipeList = this.state.recipes.map((recipe) => {
       return (
         <li key={ recipe.id }>
-          <Link to={`recipes/detail/${recipe.id}`}> { recipe.name } </Link>
-          { recipe.description ? `- ${recipe.description}`: ""}
-          <button type="button" onClick={ () => this.removeRecipe(recipe.id) }> x </button>
+          <Card>
+            <div className="recipe-name">
+              <Link to={`recipes/detail/${recipe.id}`} className="title"> { recipe.name } </Link>
+            </div>
+            <div className="recipe-description">
+              { recipe.description ? `${recipe.description}`: ""}
+            </div>
+            <div className="remove-btn">
+              <StyledLink onClick={ () => this.removeRecipe(recipe.id) }> remove </StyledLink>
+            </div>
+          </Card>
         </li>
       )
     })
@@ -93,10 +104,13 @@ class RecipeList extends React.Component {
           cookies={this.props.cookies}
           refreshList={this.refreshList}
         />
+        <h1> Your recipes </h1>
         <ul>
           { recipeList }
         </ul>
-        <button onClick={this.openAddRecipeModal}> Add Recipe </button>
+        <div className="add-recipe-wrapper">
+          <Button onClick={this.openAddRecipeModal} primary> Add Recipe </Button>
+        </div>
       </React.Fragment>
     )
   }

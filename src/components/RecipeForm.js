@@ -1,6 +1,7 @@
 import React from "react"
 import uuid from "uuid"
 
+import Button from "./common/Button"
 import { Formik, Form, Field, FieldArray, ErrorMessage } from "formik";
 
 class RecipeForm extends React.Component {
@@ -92,9 +93,9 @@ class RecipeForm extends React.Component {
               </div>
               {this.props.editMode && (
                 <div>
-                  <button type="submit" disabled={isSubmitting}>
+                  <Button type="submit" disabled={isSubmitting} primary>
                     Submit
-                  </button>
+                  </Button>
                 </div>
               )}
             </Form>
