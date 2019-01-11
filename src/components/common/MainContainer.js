@@ -15,11 +15,17 @@ const MainContainer = styled.main`
   }
 
   ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     margin: 2em 1em 2em 0em;
     padding: 0;
   }
 
   li {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     list-style-type: none;
     margin-bottom: 0.5em;
   }
@@ -43,6 +49,16 @@ const MainContainer = styled.main`
       font-weight: bold;
       text-transform: capitalize;
     }
+  }
+
+  .recipe-list, .recipe-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .recipe-title {
+    text-align: center;
   }
 `
 

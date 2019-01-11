@@ -4,7 +4,6 @@ import "../../vars.css"
 
 const Card = styled.div`
   display: flex;
-  width: 100%;
   flex-direction : column;
   border: 1px solid var(--light-gray);
   border-radius: 4px;

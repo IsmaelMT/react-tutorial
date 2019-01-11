@@ -104,13 +104,17 @@ class RecipeList extends React.Component {
           cookies={this.props.cookies}
           refreshList={this.refreshList}
         />
-        <h1> Your recipes </h1>
-        <ul>
-          { recipeList }
-        </ul>
-        <div className="add-recipe-wrapper">
-          <Button onClick={this.openAddRecipeModal} primary> Add Recipe </Button>
+        <div className="recipe-title">
+          <h1> Your recipes </h1>
         </div>
+        <section className="recipe-list">
+          <ul>
+            { recipeList }
+          </ul>
+          <div className="add-recipe-wrapper">
+            <Button onClick={this.openAddRecipeModal} primary> Add Recipe </Button>
+          </div>
+        </section>
       </React.Fragment>
     )
   }
