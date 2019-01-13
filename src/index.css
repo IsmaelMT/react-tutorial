@@ -12,3 +12,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.recipe-modal {
+  position: absolute; 
+  top: 40px; 
+  left: 40px; 
+  right: 40px; 
+  bottom: 40px; 
+  border: 1px solid rgb(204, 204, 204); 
+  background: rgb(255, 255, 255); 
+  overflow: auto; 
+  border-radius: 10px; 
+  outline: none; 
+  padding: 20px;
+  margin: auto;
+  width: 50%;
+  height: 70%;
+}

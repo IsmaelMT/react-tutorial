@@ -3,7 +3,10 @@ import Modal from "react-modal"
 import Alert from 'react-s-alert';
 
 import RecipeForm from "./RecipeForm"
-import Button from "./common/Button"
+import StyledLink from "./common/StyledLink"
+import Content from "./common/Content"
+import MainContainer from "./common/MainContainer"
+
 
 Modal.setAppElement("#root")
 
@@ -55,18 +58,27 @@ class AddRecipeModal extends React.Component {
         onRequestClose={this.handleClose}
         contentLabel="Add Recipe"
         shouldCloseOnOverlayClick={true}
+        className="recipe-modal"
       >
-        <div className="modal-wrapper">
-          <h2> Add a new recipe! </h2>
-          <RecipeForm
-            name={""}
-            description={""}
-            ingredients={[]}
-            handleSubmit={this.handleSubmit}
-            editMode={true}
-          />
-          <Button type="button" onClick={this.handleClose}> Close </Button>
-        </div>
+        <MainContainer>
+          <Content className="detail-header" right>
+            <StyledLink type="button" onClick={this.handleClose}> 
+              x 
+            </StyledLink>
+          </Content>
+          <Content className="modal-container" main>
+            <div className="modal-wrapper">
+              <h2> Add a new recipe! </h2>
+              <RecipeForm
+                name={""}
+                description={""}
+                ingredients={[]}
+                handleSubmit={this.handleSubmit}
+                editMode={true}
+              />
+            </div>
+          </Content>
+        </MainContainer>
       </Modal>
     )
   }

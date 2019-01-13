@@ -1,8 +1,9 @@
 import React from "react"
+import Alert from 'react-s-alert';
 import {Link} from "react-router-dom"
 
 import AddRecipeModal from "./AddRecipeModal"
-import Loading from "./Loading"
+import Loading from "./common/Loading"
 import Button from "./common/Button"
 import Card from "./common/Card"
 import StyledLink from "./common/StyledLink"
@@ -66,6 +67,7 @@ class RecipeList extends React.Component {
             let recipes = this.state.recipes
             recipes = recipes.filter((recipe) => recipe.id !== recipeId)
             this.setState({ recipes })
+            Alert.success("Recipe removed successfully!")
           }
         }
       )
@@ -105,7 +107,7 @@ class RecipeList extends React.Component {
           refreshList={this.refreshList}
         />
         <div className="recipe-title">
-          <h1> Your recipes </h1>
+          <h1 className="main"> Your recipes </h1>
         </div>
         <section className="recipe-list">
           <ul>

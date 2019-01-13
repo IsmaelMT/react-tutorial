@@ -2,7 +2,12 @@ import React from "react"
 import Alert from 'react-s-alert';
 
 import RecipeForm from "./RecipeForm"
-import Loading from "./Loading"
+import Loading from "./common/Loading"
+import Content from "./common/Content"
+import StyledLink from "./common/StyledLink"
+import Card from "./common/Card"
+import Button from "./common/Button"
+
 
 class RecipeDetail extends React.Component {
   constructor(props) {
@@ -57,18 +62,29 @@ class RecipeDetail extends React.Component {
     else {
 
       return  (
-        <React.Fragment>
-          <button onClick={ this.toggleEditMode }> {this.state.editMode ? "Cancel edit": "Edit"} </button>
-          <RecipeForm
-            name={this.state.recipe.name}
-            description={this.state.recipe.description}
-            ingredients={this.state.recipe.ingredients}
-            editMode={this.state.editMode}
-            handleSubmit={this.handleSubmit}
-          />
-
-          <button onClick={ () => this.props.history.goBack() }> Go back </button>
-        </React.Fragment>
+        <Content className="detail-container" main>
+          <div className="detail-wrapper">
+            <Content className="detail-header" right>
+              <Button onClick={ this.toggleEditMode } primary> 
+                {this.state.editMode ? "Cancel edit": "Edit"} 
+              </Button>
+            </Content>
+            <Card className="detail-body">
+              <RecipeForm
+                name={this.state.recipe.name}
+                description={this.state.recipe.description}
+                ingredients={this.state.recipe.ingredients}
+                editMode={this.state.editMode}
+                handleSubmit={this.handleSubmit}
+              />
+            </Card>
+            <Content className="detail-footer" left>
+              <StyledLink onClick={ () => this.props.history.goBack() }> 
+                Go back 
+              </StyledLink>
+            </Content>
+          </div>
+        </Content>
       )
     }
   }

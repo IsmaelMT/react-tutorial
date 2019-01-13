@@ -2,6 +2,8 @@ import React from "react"
 import uuid from "uuid"
 
 import Button from "./common/Button"
+import Content from "./common/Content"
+import StyledLink from "./common/StyledLink"
 import { Formik, Form, Field, FieldArray, ErrorMessage } from "formik";
 
 class RecipeForm extends React.Component {
@@ -28,8 +30,8 @@ class RecipeForm extends React.Component {
         {
           ( {values, isSubmitting} ) => (
             <Form>
-              <div>
-                Name: {
+              <div className="form-divider">
+                <span className="form-lbl"> Name: </span> {
                   this.props.editMode ? (
                     <React.Fragment>
                       <Field type="text" name="name" />
@@ -39,8 +41,8 @@ class RecipeForm extends React.Component {
                     ( values.name )
                 }
               </div>
-              <div>
-                Description: {
+              <div className="form-divider">
+                <span className="form-lbl"> Description: </span> {
                   this.props.editMode ? (
                     <React.Fragment>
                       <Field type="text" name="description" />
@@ -50,8 +52,7 @@ class RecipeForm extends React.Component {
                     (values.description)
                 }
               </div>
-              <div>
-
+              <div className="form-divider">
                 {this.props.editMode ? (
                     <FieldArray name="ingredients" >
                       {({ push, insert, pop, form, remove }) => {
@@ -59,22 +60,31 @@ class RecipeForm extends React.Component {
                           <div>
                             {values.ingredients && values.ingredients.length > 0 ? (
                               <React.Fragment>
+                                <div className="form-divider"><span className="form-lbl"> Ingredients </span></div>
                                 {
                                   values.ingredients.map((ingredient, idx) => {
                                     return (
                                       <div key={idx}>
-                                        <Field type="text" name={ `ingredients.${idx}` } />
-                                        <button type="button" onClick={() => remove(idx, "")}> - </button>
+                                        <Field type="text" name={ `ingredients.${idx}` } className="ingredient" />
+                                        <Button type="button" onClick={() => remove(idx, "")} > x </Button>
                                         <ErrorMessage name={ `ingredients.${idx}` } component="div" />
                                       </div>
                                     )
                                   })
                                 }
-                                <button type="button" onClick={() => push("")}> Add Another </button>
+                                <Content left>
+                                  <div className="form-divider">
+                                    <StyledLink type="button" onClick={() => push("")} > Add Another </StyledLink>
+                                  </div>
+                                </Content>
                               </React.Fragment>
                               )
                               : (
-                                <button type="button" onClick={() => push("")}> Add Ingredients </button>
+                                <Content left>
+                                  <div className="form-divider">
+                                    <StyledLink type="button" onClick={() => push("")}> Add Ingredients </StyledLink>
+                                  </div>
+                                </Content>
                               )
                             }
                           </div>
@@ -83,11 +93,14 @@ class RecipeForm extends React.Component {
                     </FieldArray>
                   ) :
                   (
-                    <ul>
-                      {
-                        values.ingredients.map((ing_name) => <li key={ uuid.v4() }> { ing_name } </li>)
-                      }
-                    </ul>
+                    <React.Fragment>
+                      <div className="form-divider"><span className="form-lbl"> Ingredients </span></div>
+                      <ul>
+                        {
+                          values.ingredients.map((ing_name) => <li key={ uuid.v4() } > { ing_name } </li>)
+                        }
+                      </ul>
+                    </React.Fragment>
                   )
                 }
               </div>
