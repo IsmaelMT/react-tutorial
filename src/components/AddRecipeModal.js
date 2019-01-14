@@ -38,10 +38,19 @@ class AddRecipeModal extends React.Component {
       body: JSON.stringify(values)
     })
     .then(
-      (response) => response.json()
+      (response) => {
+        if (response.status === 201) {
+          return response.json()
+        }
+        else {
+          Alert.error(
+            "An error ocurred: Check your form for errors"
+          )
+          actions.setSubmitting(false);
+        }
+      }
     )
-    .then(
-      (data) => {
+    .then((data) => {
         Alert.success("Recipe added Successfully!")
         this.props.refreshList(data)
         actions.setSubmitting(false);

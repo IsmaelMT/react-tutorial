@@ -85,6 +85,13 @@ const MainContainer = styled.main`
       margin: 0 0.5em 0.3em 0;  
     }
   }
+
+  .form-error {
+    color: var(--dark-red);
+    margin: 0.1em 0.1em 0.3em 0.1em;
+    font-weight: bold;
+  }
+
 `
 
 export default MainContainer

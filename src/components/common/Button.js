@@ -16,7 +16,6 @@ const Button = styled.button`
         background-color: var(--sky-blue);
         color: white;
         border: 1px solid white;
-        width: 90px;
         height: 40px;
       `
   };
