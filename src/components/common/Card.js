@@ -5,7 +5,7 @@ import "../../vars.css"
 const Card = styled.div`
   border: 1px solid var(--light-gray);
   border-radius: 4px;
-  margin: 0 0 1em 0em;
+  margin: auto;
   padding: 1em;
   box-shadow: rgba(50, 50, 93, 0.06) 0px 4px 8px 0px,
               rgba(121, 135, 157, 0.1) 0px 0px 4px 0px,
@@ -32,7 +32,6 @@ const Card = styled.div`
     margin-bottom: 0;
     text-align: right;
   }
-
 `
 
 export default Card
