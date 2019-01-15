@@ -82,7 +82,7 @@ class RecipeList extends React.Component {
 
     const recipeList = this.state.recipes.map((recipe) => {
       return (
-        <li key={ recipe.id }>
+        <li key={ recipe.id } className="recipe-card">
           <Card>
             <div className="recipe-name">
               <Link to={`recipes/detail/${recipe.id}`} className="title"> { recipe.name } </Link>

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Modal from "react-modal"
 import { BrowserRouter as Router } from "react-router-dom";
 import { CookiesProvider } from 'react-cookie';
 
@@ -7,6 +8,8 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+
+Modal.setAppElement("#root");
 
 const AppWrapper = () => (
   <CookiesProvider>

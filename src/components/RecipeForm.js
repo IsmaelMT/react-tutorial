@@ -53,7 +53,7 @@ class RecipeForm extends React.Component {
       >
         {
           ( {values, isSubmitting} ) => (
-            <Form>
+            <Form id="recipe-form">
               <div className="form-divider">
                 <span className="form-lbl"> Name: </span> {
                   this.props.editMode ? (

@@ -8,8 +8,6 @@ import Content from "./common/Content"
 import MainContainer from "./common/MainContainer"
 
 
-Modal.setAppElement("#root")
-
 class AddRecipeModal extends React.Component {
 
   addIngredient = () => {
